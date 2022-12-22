@@ -14,15 +14,29 @@
     </head>
     <body>
         <div id="main">
-            <!-- v-bind is used for attributes like class, src, href, alt -->
-            <h1 v-bind:class="headingClass">{{ heading }}</h1>
+                        <div class="upload">
+                <h2>Uploading Files to Server</h2>
+                <!-- we will handle the upload manually in vueJS in the handleSubmit function -->
+                <form v-on:submit="handleSubmit">
+                    <div>
+                        <span>Filename: </span><input type="text" name="filename" v-model="filename">
+                    </div>
+                    <div>
+                        <span>File: </span><input type="file" name="file" accept="image/*" v-on:change="handleFileChange">
+                    </div>
+                    <button>Submit</button>
+                </form>
+            </div>
+            <div class="gallery">
+                <!-- v-bind is used for attributes like class, src, href, alt -->
+                <h1 v-bind:class="headingClass">{{ heading }}</h1>
 
-            <ul v-if="images.length > 0">
-                <li v-for="img in images"><img v-bind:src="img.url" v-bind:alt="img.title"><br>
-                    <p>{{img.title}}</p>
-                </li>
-            </ul>
-
+                 <ul v-if="images.length > 0">
+                     <li v-for="img in images"><img v-bind:src="img.url" v-bind:alt="img.title"><br>
+                        <p>{{img.title}}</p>
+                     </li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

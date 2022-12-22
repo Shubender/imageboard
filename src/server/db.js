@@ -4,5 +4,8 @@ const spicedPg = require("spiced-pg");
 const db = spicedPg(DATABASE_URL);
 
 module.exports.getAllImg = () => {
-    return db.query(`SELECT * FROM images`);
+    return db.query(`
+    SELECT * FROM images
+    ORDER BY created_at DESC
+    `);
 };
