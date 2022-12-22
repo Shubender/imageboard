@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Image Board</title>
+        <link rel="stylesheet" href="styles.css" />
         <script
             defer
             src="./js/app.js"
@@ -12,6 +13,16 @@
         ></script>
     </head>
     <body>
+        <div id="main">
+            <!-- v-bind is used for attributes like class, src, href, alt -->
+            <h1 v-bind:class="headingClass">{{ heading }}</h1>
 
+            <ul v-if="images.length > 0">
+                <li v-for="img in images"><img v-bind:src="img.url" v-bind:alt="img.title"><br>
+                    <p>{{img.title}}</p>
+                </li>
+            </ul>
+
+        </div>
     </body>
 </html>

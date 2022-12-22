@@ -1,0 +1,38 @@
+* {
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+html {
+    background: url(/winter.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    list-style-type: none;
+}
+
+/* li {
+    border: 2px dotted gainsboro;
+    border-radius: 15px;
+} */
+
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
