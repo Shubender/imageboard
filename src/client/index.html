@@ -19,12 +19,14 @@
                 <!-- we will handle the upload manually in vueJS in the handleSubmit function -->
                 <form v-on:submit="handleSubmit">
                     <div>
-                        <span>Filename: </span><input type="text" name="filename" v-model="filename">
+                        <span>Title: </span><input type="text" name="filename" v-model="filename">
+                        <span>Description: </span><input type="text" name="description" v-model="description">
+                        <span>User name: </span><input type="text" name="username" v-model="username">
                     </div>
                     <div>
                         <span>File: </span><input type="file" name="file" accept="image/*" v-on:change="handleFileChange">
                     </div>
-                    <button>Submit</button>
+                    <button>Upload</button>
                 </form>
             </div>
             <div class="gallery">

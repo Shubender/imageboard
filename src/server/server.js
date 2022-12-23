@@ -25,7 +25,7 @@ const uploader = multer({
     },
 });
 
-const { getAllImg } = require("./db");
+const { getAllImg, addImg } = require("./db");
 let images;
 
 app.use(express.static(path.join(__dirname, "..", "client")));
@@ -46,16 +46,25 @@ app.get("/images", (req, res) => {
 
 app.post("/upload", uploader.single("file"), fileUpload, function (req, res) {
     // If nothing went wrong the file is already in the uploads directory
-    console.log("amazon link from server: ", res.locals.fileUrl);
-    if (req.file) {
-        res.json({
-            success: true,
-        });
-    } else {
-        res.json({
-            success: false,
-        });
-    }
+    // console.log("amazon link from server: ", res.locals.fileUrl);
+    // console.log("user input (server): ", req.body.filename, req.body.description, req.body.username);
+
+    const imgUrl = res.locals.fileUrl;
+    const username = req.body.username;
+    const filename = req.body.filename;
+    const description = req.body.description;
+    addImg(imgUrl, username, filename, description).then((data) => {
+        if (req.file) {
+            console.log("User data (server): ", data.rows[0]);
+            res.json({
+                success: true, userFile: data.rows[0]
+            });
+        } else {
+            res.json({
+                success: false,
+            });
+        }
+    })
 });
 
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));

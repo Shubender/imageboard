@@ -8,6 +8,8 @@ Vue.createApp({
             images: [],
             filename: "",
             file: null,
+            description: "",
+            username: "",
         };
     },
     methods: {
@@ -17,7 +19,8 @@ Vue.createApp({
             const formData = new FormData();
             formData.append("filename", this.filename);
             formData.append("file", this.file);
-
+            formData.append("description", this.description);
+            formData.append("username", this.username);
             fetch("/upload", {
                 method: "POST",
                 body: formData,
@@ -27,6 +30,7 @@ Vue.createApp({
                 })
                 .then((data) => {
                     console.log(data);
+                    this.images.unshift(data.userFile);
                 });
         },
         handleFileChange(event) {

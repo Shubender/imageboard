@@ -32,7 +32,7 @@ const s3 = new aws.S3({
 });
 
 function fileUpload(req, res, next) {
-    console.log("file: ", req.file);
+    // console.log("file(upload): ", req.file);
     if (!req.file) {
         console.log("[imageboard:s3] file not there");
         res.statusCode = 400;
