@@ -44,7 +44,7 @@ Vue.createApp({
             this.imageId = event.target.id;
             // res.locals.fileData = event.target;
             this.showModal = true;
-            console.log("handleClickImage: ", this.imageId, this.showModal);
+            // console.log("handleClickImage: ", this.imageId, this.showModal);
         },
         handleCloseImage() {
             this.showModal = false;

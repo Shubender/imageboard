@@ -28,8 +28,6 @@ const uploader = multer({
     },
 });
 
-
-
 app.use(express.static(path.join(__dirname, "..", "client")));
 app.use(express.json());
 
@@ -59,22 +57,21 @@ app.post("/upload", uploader.single("file"), fileUpload, function (req, res) {
         if (req.file) {
             console.log("User data (server): ", data.rows[0]);
             res.json({
-                success: true, userFile: data.rows[0]
+                success: true,
+                userFile: data.rows[0],
             });
         } else {
             res.json({
                 success: false,
             });
         }
-    })
+    });
 });
 
 app.get("/image/:id", (req, res) => {
     imageId = req.params.id;
-    console.log("imageId (server): ", imageId);      // undefined
+    // console.log("imageId (server): ", imageId);
     getImageById(imageId).then((data) => {
-        // console.log(data.rows[0]);
-        // singleImg = data.rows[0];
         res.json(data.rows[0]);
     });
 });
