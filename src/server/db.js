@@ -16,3 +16,11 @@ module.exports.addImg = (url, username, title, description) => {
         [url, username, title, description]
     );
 };
+
+module.exports.getImageById = (imageId) => {
+    return db.query(
+        `SELECT * FROM images
+        WHERE id = $1;`,
+        [imageId]
+    );
+};

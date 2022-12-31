@@ -6,6 +6,9 @@ const app = express();
 require("dotenv").config();
 const { PORT = 8080 } = process.env;
 const { fileUpload } = require("./file-upload");
+const { getAllImg, addImg, getImageById } = require("./db");
+let images;
+let imageId;
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -25,8 +28,7 @@ const uploader = multer({
     },
 });
 
-const { getAllImg, addImg } = require("./db");
-let images;
+
 
 app.use(express.static(path.join(__dirname, "..", "client")));
 app.use(express.json());
@@ -65,6 +67,16 @@ app.post("/upload", uploader.single("file"), fileUpload, function (req, res) {
             });
         }
     })
+});
+
+app.get("/image/:id", (req, res) => {
+    imageId = req.params.id;
+    console.log("imageId (server): ", imageId);      // undefined
+    getImageById(imageId).then((data) => {
+        // console.log(data.rows[0]);
+        // singleImg = data.rows[0];
+        res.json(data.rows[0]);
+    });
 });
 
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));

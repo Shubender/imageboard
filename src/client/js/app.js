@@ -1,4 +1,5 @@
 import * as Vue from "./vue.js";
+import { imageComponent } from "./modal/modal.js";
 
 Vue.createApp({
     data: () => {
@@ -10,6 +11,8 @@ Vue.createApp({
             file: null,
             description: "",
             username: "",
+            imageId: "",
+            showModal: false,
         };
     },
     methods: {
@@ -37,6 +40,15 @@ Vue.createApp({
             console.log(event.target.files);
             this.file = event.target.files[0];
         },
+        handleClickImage(event) {
+            this.imageId = event.target.id;
+            // res.locals.fileData = event.target;
+            this.showModal = true;
+            console.log("handleClickImage: ", this.imageId, this.showModal);
+        },
+        handleCloseImage() {
+            this.showModal = false;
+        },
     },
     created() {
         console.log("Vue app was created");
@@ -48,5 +60,8 @@ Vue.createApp({
                 console.log("data from server: ", data);
                 this.images = data;
             });
+    },
+    components: {
+        "one-image": imageComponent,
     },
 }).mount("#main");
