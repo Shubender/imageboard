@@ -11,6 +11,8 @@
             type="module"
             crossorigin="use-credentials"
         ></script>
+       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+       <style>@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');</style>
     </head>
     <body>
         <div id="main">
@@ -24,9 +26,9 @@
                         <span>User name: </span><input type="text" name="username" v-model="username">
                     </div>
                     <div>
-                        <span>File: </span><input type="file" name="file" accept="image/*" v-on:change="handleFileChange">
+                        <span>File: </span><input class="btn" type="file" name="file" accept="image/*" v-on:change="handleFileChange">
                     </div>
-                    <button>Upload</button>
+                    <button class="btn">Upload</button>
                 </form>
             </div>
             <div class="gallery">

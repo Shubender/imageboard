@@ -1,6 +1,8 @@
 * {
     margin: 5px;
     box-sizing: border-box;
+    font-family: "Dancing Script", cursive;
+    font-size: 20px;
 }
 
 html {
@@ -13,12 +15,12 @@ html {
 
 h1 {
     text-align: center;
+    font-size: 40px;
 }
 
 ul {
     display: grid;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 250px);
     gap: 50px;
     align-items: center;
     text-align: center;
@@ -26,23 +28,23 @@ ul {
     list-style-type: none;
 }
 
-/* li {
-    border: 2px dotted gainsboro;
+li {
+    border: 2px dashed gray;
     border-radius: 15px;
-} */
+}
 
 img {
-    width: 200px;
     height: 200px;
+    width: 200px;
     object-fit: cover;
     border-radius: 15px;
 }
 
 img:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-#popup{
+#popup {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,23 +52,65 @@ img:hover {
     z-index: 10;
     padding: 20px;
     border-radius: 15px;
-    border: 2px solid gray;
+    border: 2px dashed gray;
     overflow: hidden;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background: url(/small-winter.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-#popup{}
+#popup {
+}
 
-#backdrop{
-    width: 100vw;
+#backdrop {
     height: 100vh;
-    background-color: gainsboro;
+    width: 100vw;
     position: fixed;
     top: 0;
-    opacity: 0.9;
     overflow: hidden;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+#popup img {
+    height: 100%;
+    width: 100%;
+    cursor: default;
+}
+
+.btn {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color: #ededed;
+    border-radius: 15px;
+    border: 1px solid #d6bcd6;
+    display: inline-block;
+    cursor: pointer;
+    color: #3a8a9e;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
+}
+.btn:hover {
+    background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color: #bab1ba;
+}
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+input {
+    background-color: #ededed;
+    border: 1px solid #d6bcd6;
+    border-radius: 15px;
 }
