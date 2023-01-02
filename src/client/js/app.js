@@ -6,6 +6,7 @@ Vue.createApp({
         return {
             heading: "List of images",
             headingClass: "h1-header",
+            btn: "btn",
             images: [],
             filename: "",
             file: null,
@@ -13,6 +14,8 @@ Vue.createApp({
             username: "",
             imageId: "",
             showModal: false,
+            usercomment: "",
+            comment: "",
         };
     },
     methods: {

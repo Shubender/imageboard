@@ -3,7 +3,13 @@
     box-sizing: border-box;
     font-family: "Dancing Script", cursive;
     font-size: 20px;
+    border-radius: 15px;
 }
+
+/* #file-upload-button {
+        font-family: "Dancing Script", cursive;
+    font-size: 20px;
+} */
 
 html {
     background: url(/winter.jpg) no-repeat center center fixed;
@@ -46,7 +52,7 @@ img:hover {
 
 #popup {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -64,9 +70,6 @@ img:hover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-#popup {
 }
 
 #backdrop {
@@ -99,6 +102,8 @@ img:hover {
     padding: 7px 25px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #e1e2ed;
+    font-family: "Dancing Script", cursive;
+    font-size: 20px;
 }
 .btn:hover {
     background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);

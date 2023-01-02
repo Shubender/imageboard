@@ -9,6 +9,21 @@ CREATE TABLE images(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    id_image INT REFERENCES images(id),
+    username VARCHAR NOT NULL,
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- INSERT INTO comments (id_image, username, comment) VALUES (
+--     9,
+--     'funkychicken',
+--     'That is the question.'
+-- );
+
+
 INSERT INTO images (url, username, title, description) VALUES (
     'https://s3.amazonaws.com/imageboard/jAVZmnxnZ-U95ap2-PLliFFF7TO0KqZm.jpg',
     'funkychicken',

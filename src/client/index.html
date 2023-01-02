@@ -27,9 +27,9 @@
                         <span>User name: </span><input type="text" name="username" v-model="username">
                     </div>
                     <div>
-                        <span>File: </span><input class="btn" type="file" name="file" accept="image/*" v-on:change="handleFileChange">
+                        <span>File: </span><input v-bind:class="btn" type="file" name="file" accept="image/*" v-on:change="handleFileChange">
                     </div>
-                    <button class="btn">Upload</button>
+                    <button v-bind:class="btn">Upload</button>
                 </form>
             </div>
             <div class="gallery">

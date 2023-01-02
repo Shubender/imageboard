@@ -6,7 +6,13 @@ const app = express();
 require("dotenv").config();
 const { PORT = 8080 } = process.env;
 const { fileUpload } = require("./file-upload");
-const { getAllImg, addImg, getImageById } = require("./db");
+const {
+    getAllImg,
+    addImg,
+    getImageById,
+    getCommentsByImageId,
+    addComment,
+} = require("./db");
 let images;
 let imageId;
 
@@ -74,6 +80,26 @@ app.get("/image/:id", (req, res) => {
     getImageById(imageId).then((data) => {
         res.json(data.rows[0]);
     });
+});
+
+app.get("/comments/:id", (req, res) => {
+    const commentId = req.params.id;
+    // console.log("comentId (server): ", commentId);
+    getCommentsByImageId(commentId).then((data) => {
+        res.json(data.rows);
+    });
+});
+
+app.post("/image/comments", (req, res) => {
+    const { imageId, username, comment } = req.body;
+    addComment(imageId, username, comment)
+        .then((data) => {
+            console.log("comment data (server): ", data.rows);
+            res.json({ comment, username, imageId });
+        })
+        .catch((err) => {
+            console.log("ERROR in addComment: ", err);
+        });
 });
 
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
