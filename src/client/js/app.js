@@ -52,6 +52,16 @@ Vue.createApp({
         handleCloseImage() {
             this.showModal = false;
         },
+        loadMoreImages(event) {
+            event.preventDefault();
+            fetch(`/images/loadmore`)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log("New images array (app.js): ", data);
+                });
+        },
     },
     created() {
         console.log("Vue app was created");

@@ -12,9 +12,10 @@ const {
     getImageById,
     getCommentsByImageId,
     addComment,
+    getMoreImages,
 } = require("./db");
-let images;
 let imageId;
+let lastImageId;
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -44,9 +45,9 @@ app.get("/", (req, res) => {
 
 app.get("/images", (req, res) => {
     getAllImg().then((data) => {
-        // console.log(data.rows);
-        images = data.rows;
-        res.json(images);
+        console.log("Last image ID: ", data.rows[data.rows.length - 1].id);
+        lastImageId = data.rows[data.rows.length - 1].id;
+        res.json(data.rows);
     });
 });
 
@@ -98,6 +99,18 @@ app.post("/image/comments", (req, res) => {
         })
         .catch((err) => {
             console.log("ERROR in addComment: ", err);
+        });
+});
+
+app.get("/images/loadmore", (req, res) => {
+    getMoreImages(lastImageId)
+        .then((data) => {
+            console.log("New images array (server): ", data.rows);
+            lastImageId = data.rows[data.rows.length - 1].id;
+            res.json(data.rows);
+        })
+        .catch((err) => {
+            console.log("ERROR in getMoreImages: ", err);
         });
 });
 
