@@ -94,8 +94,9 @@ app.post("/image/comments", (req, res) => {
     const { imageId, username, comment } = req.body;
     addComment(imageId, username, comment)
         .then((data) => {
-            console.log("comment data (server): ", data.rows);
-            res.json({ comment, username, imageId });
+            const created_at = data.rows[0].created_at;
+            console.log("comment created (server): ", created_at);
+            res.json({ imageId, username, comment, created_at });
         })
         .catch((err) => {
             console.log("ERROR in addComment: ", err);
