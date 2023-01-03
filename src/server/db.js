@@ -7,7 +7,7 @@ module.exports.getAllImg = () => {
     return db.query(`
     SELECT * FROM images
     ORDER BY created_at DESC
-    LIMIT 5;
+    LIMIT 10;
     `);
 };
 
@@ -21,7 +21,7 @@ module.exports.getMoreImages = (id) => {
     ) AS "lowestId" FROM images
     WHERE id < $1
     ORDER BY id DESC
-    LIMIT 5;`,
+    LIMIT 10;`,
         [id]
     );
 };
@@ -57,4 +57,22 @@ module.exports.getCommentsByImageId = (imageId) => {
         ORDER BY created_at DESC`,
         [imageId]
     );
+};
+
+module.exports.deleteImage = (imageId) => {
+    return db
+        .query(
+            `
+            DELETE FROM comments
+            WHERE id_image = $1`,
+            [imageId]
+        )
+        .then(() => {
+            db.query(
+                `
+                DELETE FROM images
+                WHERE id = $1;`,
+                [imageId]
+            );
+        });
 };

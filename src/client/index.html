@@ -27,9 +27,13 @@
                         <span>User name: </span><input type="text" name="username" v-model="username">
                     </div>
                     <div>
-                        <span>File: </span><input v-bind:class="btn" type="file" name="file" accept="image/*" v-on:change="handleFileChange">
+                        <span>File: </span>
+                        <label class="btn">
+                            <input type="file" name="file" accept="image/*" v-on:change="handleFileChange">
+                            <i class="fa fa-cloud-upload"></i> Choose
+                        </label>
+                        <button class="btn">Upload</button>
                     </div>
-                    <button v-bind:class="btn">Upload</button>
                 </form>
             </div>
             <div class="gallery">

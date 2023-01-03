@@ -1,15 +1,9 @@
 * {
-    margin: 5px;
+    margin: 0px;
     box-sizing: border-box;
     font-family: "Dancing Script", cursive;
     font-size: 20px;
-    border-radius: 15px;
 }
-
-/* #file-upload-button {
-        font-family: "Dancing Script", cursive;
-    font-size: 20px;
-} */
 
 html {
     background: url(/winter.jpg) no-repeat center center fixed;
@@ -19,9 +13,20 @@ html {
     background-size: cover;
 }
 
+.upload {
+    margin: 5px;
+    padding: 5px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
 h1 {
     text-align: center;
     font-size: 40px;
+    margin: 5px;
 }
 
 ul {
@@ -32,11 +37,13 @@ ul {
     text-align: center;
     padding: 10px;
     list-style-type: none;
+    margin: 5px;
 }
 
 li {
     border: 2px dashed gray;
     border-radius: 15px;
+    margin: 5px;
 }
 
 img {
@@ -44,27 +51,31 @@ img {
     width: 200px;
     object-fit: cover;
     border-radius: 15px;
+    margin: 5px;
 }
 
 img:hover {
     cursor: pointer;
+    margin: 5px;
 }
 
 #popup {
-    position: absolute;
-    top: 60%;
+    position: fixed;
+    top: 20px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    height: 90%;
     z-index: 10;
     padding: 20px;
+    margin: 5px;
     border-radius: 15px;
     border: 2px dashed gray;
-    overflow: hidden;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
     background: url(/small-winter.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -86,6 +97,13 @@ img:hover {
     height: 100%;
     width: 100%;
     cursor: default;
+    margin: 5px;
+}
+
+.comments {
+    border-radius: 15px;
+    border: 2px dashed gray;
+    margin: 5px;
 }
 
 .btn {
@@ -96,7 +114,7 @@ img:hover {
     border: 1px solid #d6bcd6;
     display: inline-block;
     cursor: pointer;
-    color: #3a8a9e;
+    color: black;
     font-family: Arial;
     font-size: 17px;
     padding: 7px 25px;
@@ -104,6 +122,7 @@ img:hover {
     text-shadow: 0px 1px 0px #e1e2ed;
     font-family: "Dancing Script", cursive;
     font-size: 20px;
+    margin: 5px;
 }
 .btn:hover {
     background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
@@ -114,8 +133,35 @@ img:hover {
     top: 1px;
 }
 
+button {
+    border-radius: 15px;
+}
+
+.delBth {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
 input {
     background-color: #ededed;
     border: 1px solid #d6bcd6;
     border-radius: 15px;
+    margin: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e5e3e5;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #9fa9ad;
 }

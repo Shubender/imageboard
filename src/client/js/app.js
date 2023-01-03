@@ -56,6 +56,12 @@ Vue.createApp({
             this.imageId = null;
             history.pushState({}, "", "/");
         },
+        handleDeleteImage() {
+            this.value = this.images.findIndex(
+                (image) => image.id === this.imageId
+            );
+            this.images.splice(this.value, 1);
+        },
         loadMoreImages(event) {
             event.preventDefault();
             fetch(`/images/loadmore`)
@@ -85,9 +91,12 @@ Vue.createApp({
     },
     mounted() {
         // console.log("Testing Mount");
-
+        if (!this.imageId && window.location.hash) {
+            this.imageId = window.location.hash.split("#")[1];
+            this.showModal = true;
+        }
         this.imageId = location.hash.slice(1);
-        window.addEventListener("popstate", () => {
+        addEventListener("popstate", () => {
             console.log("route change: ", window.location);
             if (!this.imageId && window.location.hash) {
                 this.imageId = window.location.hash.split("#")[1];

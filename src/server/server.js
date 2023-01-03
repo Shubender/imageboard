@@ -13,6 +13,7 @@ const {
     getCommentsByImageId,
     addComment,
     getMoreImages,
+    deleteImage,
 } = require("./db");
 let imageId;
 let lastImageId;
@@ -111,6 +112,18 @@ app.get("/images/loadmore", (req, res) => {
         })
         .catch((err) => {
             console.log("ERROR in getMoreImages: ", err);
+        });
+});
+
+app.delete("/image/:id", (req, res) => {
+    imageId = req.params.id;
+    console.log("imageId (server): ", imageId);
+    deleteImage(imageId)
+        .then(() => {
+            res.json(data);
+        })
+        .catch((err) => {
+            console.log("ERROR in deleteImage: ", err);
         });
 });
 

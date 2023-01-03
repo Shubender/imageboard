@@ -9,7 +9,7 @@ export const commentsComponent = {
     },
 
     template: `
-        <div id="comments">
+        <div>
             <h2>Add a comment:</h2>
             <form v-on:submit="handleAddComment">
                 <span>User name: </span><input type="text" name="username" v-model="username">
@@ -17,7 +17,7 @@ export const commentsComponent = {
                 <button id="submitcomment">Submit</button>
             </form>
             <h2>All comments:</h2>
-            <p v-for="comment in comments">    
+            <p class="comments" v-for="comment in comments">    
                 <p>User <b>{{comment.username}}</b> wrote:</p>
                 <p>"{{comment.comment}}"</p>
                 <p>On {{comment.created_at.slice(0, 10)}}</p><br>

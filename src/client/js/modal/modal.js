@@ -16,9 +16,12 @@ export const imageComponent = {
     template: `
         <div id="backdrop" v-on:click="handleCloseImage"></div>
         <div id="popup">
-            <h2>{{imageData.title}}</h2>  
+            <h2>{{imageData.title}}</h2>
+                <form v-on:submit="deleteImage">
+            <button class="delBth">Del Img</button>
+            </form>
             <img v-bind:src="imageData.url">            
-            <p><b>Description:</b>{{imageData.description}}</p>
+            <p><b>Description: </b>{{imageData.description}}</p>
             <p><b>Uploaded</b> by <b>{{imageData.username}}</b> on {{imageData.created_at?.slice(0, 10)}}</p>
             <comments v-bind:id="id"></comments>
         </div>
@@ -28,13 +31,29 @@ export const imageComponent = {
         handleCloseImage(event) {
             this.$emit("closed", event.target.value);
         },
+        deleteImage(event) {
+            event.preventDefault();
+            this.$emit("close");
+
+            fetch(`/image/${this.imageId}`, {
+                method: "DELETE",
+            })
+                .then((response) => {
+                    response.json();
+                })
+                .then(() => {
+                    this.$emit("delete");
+                })
+                .catch((error) => {
+                    console.error("Error in fetch delete:", error);
+                });
+        },
     },
 
-    emits: ["closed"],
+    emits: ["closed", "delete"],
 
     mounted() {
         console.log("modal.js mounted, image Id: ", this.id);
-        // this.imageId = location.hash.slice(1);
         fetch(`/image/${this.id}`)
             .then((res) => {
                 return res.json();
