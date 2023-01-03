@@ -16,6 +16,7 @@ Vue.createApp({
             showModal: false,
             usercomment: "",
             comment: "",
+            showMore: true,
         };
     },
     methods: {
@@ -59,7 +60,12 @@ Vue.createApp({
                     return res.json();
                 })
                 .then((data) => {
+                    this.images.push(...data);
                     console.log("New images array (app.js): ", data);
+                    if (data.length < 5) {
+                        console.log("попався!");
+                        this.showMore = false;
+                    }
                 });
         },
     },

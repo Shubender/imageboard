@@ -50,7 +50,7 @@
             @closed="handleCloseImage"
             ></one-image>
             <form v-on:submit="loadMoreImages">
-                <button v-bind:class="btn">Show more</button>
+                <button v-if="showMore" class="btn">Show more</button>
             </form>
         </div>
     </body>
