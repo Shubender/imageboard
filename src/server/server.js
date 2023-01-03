@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
 
 app.get("/images", (req, res) => {
     getAllImg().then((data) => {
-        console.log("Last image ID: ", data.rows[data.rows.length - 1].id);
+        // console.log("Last image ID: ", data.rows[data.rows.length - 1].id);
         lastImageId = data.rows[data.rows.length - 1].id;
         res.json(data.rows);
     });
@@ -105,7 +105,7 @@ app.post("/image/comments", (req, res) => {
 app.get("/images/loadmore", (req, res) => {
     getMoreImages(lastImageId)
         .then((data) => {
-            console.log("New images array (server): ", data.rows);
+            // console.log("New images array (server): ", data.rows);
             lastImageId = data.rows[data.rows.length - 1].id;
             res.json(data.rows);
         })

@@ -34,6 +34,7 @@ export const imageComponent = {
 
     mounted() {
         console.log("modal.js mounted, image Id: ", this.id);
+        // this.imageId = location.hash.slice(1);
         fetch(`/image/${this.id}`)
             .then((res) => {
                 return res.json();

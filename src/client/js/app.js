@@ -12,7 +12,7 @@ Vue.createApp({
             file: null,
             description: "",
             username: "",
-            imageId: "",
+            imageId: null,
             showModal: false,
             usercomment: "",
             comment: "",
@@ -49,9 +49,12 @@ Vue.createApp({
             // res.locals.fileData = event.target;
             this.showModal = true;
             // console.log("handleClickImage: ", this.imageId, this.showModal);
+            history.pushState({}, "", `/#${this.imageId}`);
         },
         handleCloseImage() {
             this.showModal = false;
+            this.imageId = null;
+            history.pushState({}, "", "/");
         },
         loadMoreImages(event) {
             event.preventDefault();
@@ -63,14 +66,14 @@ Vue.createApp({
                     this.images.push(...data);
                     console.log("New images array (app.js): ", data);
                     if (data.length < 5) {
-                        console.log("попався!");
+                        console.log("catch!");
                         this.showMore = false;
                     }
                 });
         },
     },
     created() {
-        console.log("Vue app was created");
+        // console.log("Vue app was created");
         fetch("/images")
             .then((res) => {
                 return res.json();
@@ -79,6 +82,22 @@ Vue.createApp({
                 console.log("data from server: ", data);
                 this.images = data;
             });
+    },
+    mounted() {
+        // console.log("Testing Mount");
+
+        this.imageId = location.hash.slice(1);
+        window.addEventListener("popstate", () => {
+            console.log("route change: ", window.location);
+            if (!this.imageId && window.location.hash) {
+                this.imageId = window.location.hash.split("#")[1];
+                this.showModal = true;
+            }
+            if (this.imageId && !window.location.hash) {
+                this.imageId = null;
+                this.showModal = false;
+            }
+        });
     },
     components: {
         "one-image": imageComponent,
