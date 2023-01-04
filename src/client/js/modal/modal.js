@@ -18,7 +18,7 @@ export const imageComponent = {
         <div id="popup">
             <h2>{{imageData.title}}</h2>
                 <form v-on:submit="deleteImage">
-            <button class="delBth">Del Img</button>
+            <button class="delBth">Del Pic</button>
             </form>
             <img v-bind:src="imageData.url">            
             <p><b>Description: </b>{{imageData.description}}</p>
@@ -33,9 +33,9 @@ export const imageComponent = {
         },
         deleteImage(event) {
             event.preventDefault();
-            this.$emit("close");
+            this.$emit("closed");
 
-            fetch(`/image/${this.imageId}`, {
+            fetch(`/image/${this.id}`, {
                 method: "DELETE",
             })
                 .then((response) => {

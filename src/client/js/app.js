@@ -53,13 +53,15 @@ Vue.createApp({
         },
         handleCloseImage() {
             this.showModal = false;
-            this.imageId = null;
+            // this.imageId = null;
             history.pushState({}, "", "/");
         },
         handleDeleteImage() {
-            this.value = this.images.findIndex(
-                (image) => image.id === this.imageId
-            );
+            console.log("this.images: ", this.images);
+            console.log("this.image id: ", this.imageId);
+
+            this.value = this.images.find((image) => image.id === this.imageId);
+            console.log("value: ", this.value); // why it's undefined???
             this.images.splice(this.value, 1);
         },
         loadMoreImages(event) {
@@ -71,7 +73,7 @@ Vue.createApp({
                 .then((data) => {
                     this.images.push(...data);
                     console.log("New images array (app.js): ", data);
-                    if (data.length < 5) {
+                    if (data.length < 10) {
                         console.log("catch!");
                         this.showMore = false;
                     }
@@ -103,7 +105,7 @@ Vue.createApp({
                 this.showModal = true;
             }
             if (this.imageId && !window.location.hash) {
-                this.imageId = null;
+                // this.imageId = null;
                 this.showModal = false;
             }
         });

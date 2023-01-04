@@ -42,7 +42,7 @@
 
                  <ul v-if="images.length > 0">
                      <li v-for="img in images">
-                        <img v-bind:src="img.url" v-bind:alt="img.title" v-bind:id="img.id" @click="handleClickImage">
+                        <img v-bind:src="img.url" v-bind:alt="img.title" v-bind:key="img.id" v-bind:id="img.id" @click="handleClickImage">
                         <br>
                         <p>{{img.title}}</p>
                      </li>
@@ -52,6 +52,7 @@
             v-if="showModal"
             v-bind:id="imageId" 
             @closed="handleCloseImage"
+            @delete="handleDeleteImage"
             ></one-image>
             <form v-on:submit="loadMoreImages">
                 <button v-if="showMore" class="btn">Show more</button>

@@ -117,10 +117,11 @@ app.get("/images/loadmore", (req, res) => {
 
 app.delete("/image/:id", (req, res) => {
     imageId = req.params.id;
-    console.log("imageId (server): ", imageId);
+    // console.log("imageId (server): ", imageId);
     deleteImage(imageId)
         .then(() => {
-            res.json(data);
+            console.log("after del (server): ", imageId);
+            res.json(imageId);
         })
         .catch((err) => {
             console.log("ERROR in deleteImage: ", err);
